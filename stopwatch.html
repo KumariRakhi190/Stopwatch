@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!-- Coding by CodingLab | www.codinglabweb.com-->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <title> Stopwatch Timer application | CodingLab </title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="time">
+        <span class="hour">00</span>
+        <span class="colon" >:</span>
+        <span class="minute">00</span>
+        <span class="colon">:</span>
+        <span class="second">00</span>
+        <span class="colon ms-colon">:</span>
+        <span class="millisecond">00</span>
+      </div>
+      <div class="buttons">
+        <button class="start">Start</button>
+        <button class="stop">Stop</button>
+        <button class="reset">Reset</button>
+      </div>
+    </div>
+
+    <script>
+      let msec=00;
+      let sec=00;
+      let mns=00;
+      let hrs=00;
+      let msecs=document.querySelector(".millisecond");
+      let secs=document.querySelector(".second");
+      let mnss=document.querySelector(".minute");
+      let hrss=document.querySelector(".hour");
+      let buttonStart=document.querySelector(".start");
+      let buttonStop=document.querySelector(".stop");
+      let buttonReset=document.querySelector(".reset");
+      
+      let interval;
+      
+      function startTimer(){
+        msec++;
+        msecs.innerText=msec;
+        
+        if(msec>250){
+          sec++;
+          secs.innerText=sec;
+          msec=0;
+        
+        }
+        if(sec>59){
+          mns++;
+          mnss.innerText=mns;
+          sec=0;
+          
+        }
+        if(mns>59){
+          hrs++;
+          hrss.innerText="0"+hrs;
+          mns=0; 
+        }
+      }
+
+      buttonStart.onclick= function(){
+        interval=setInterval(startTimer);
+      };
+
+      buttonStop.onclick=function(){
+          clearInterval(interval);
+      };
+
+      buttonReset.onclick=function(){
+        clearInterval(interval);
+        msec="00";
+        sec="00";
+        mns="00";
+        hrs="00";
+        msecs.innerText=msec;
+        secs.innerText=sec;
+        mnss.innerText=mns;
+        hrss.innerText=hrs;
+        
+      }
+
+     
+
+    </script>
+  </body>
+</html>
